@@ -7,14 +7,24 @@ class Encryptor
      "u" => "h", "v" => "i", "w" => "j", "x" => "k", "y" => "l",
      "z" => "m"}
    end
+
    def encrypt_letter(letter)
      lowercase_letter = letter.downcase
      cipher[lowercase_letter]
    end
+
    def encrypt(string)
-     #cut up string
-     #encrypt letters and gather that info
-     #rejoin letters
+     letters = string.split("")
+     new_string = ""
+     letters.each {|letter| new_string += encrypt_letter(letter)}
+     new_string
+   end
+
+   def decrypt_letter(letter)
+     cipher.invert[letter]
+   end
+
+   def decrypt(string)
      letters = string.split("")
      new_string = ""
      letters.each {|letter| new_string += encrypt_letter(letter)}
